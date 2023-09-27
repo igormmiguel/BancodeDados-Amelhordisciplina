@@ -138,3 +138,15 @@ END
 //
 DELIMITER;
 CALL listando_autoures();
+
+-- 10
+DELIMITER //
+CREATE PROCEDURE sp_LivrosESeusAutores()
+BEGIN
+    SELECT Livro.Titulo, Autor.Nome, Autor.Sobrenome
+    FROM Livro
+    JOIN Autor_Livro ON Livro.Livro_ID = Autor_Livro.Livro_ID
+    JOIN Autor ON Autor_Livro.Autor_ID = Autor.Autor_ID;
+END //
+DELIMITER ;
+CALL sp_LivrosESeusAutores();
