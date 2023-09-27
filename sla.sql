@@ -68,3 +68,19 @@ CREATE PROCEDURE sp_LivrosAteAno(IN p_lpano INT)
 //
 DELIMITER ;
 CALL sp_LivrosAteAno(2004);
+
+-- 6
+
+DELIMITER //
+CREATE PROCEDURE categoria_dos_livros (IN p_categoria varchar(100))
+BEGIN
+    SELECT titulo FROM Livro 
+    WHERE Categoria_ID = (SELECT Categoria_ID FROM Categoria 
+    WHERE Nome = p_categoria);
+END
+//
+DELIMITER ;
+CALL sp_LivrosPorCategoria("Romance");
+CALL sp_LivrosPorCategoria("Autoajuda");
+CALL sp_LivrosPorCategoria("Ficção Científica");
+
