@@ -125,3 +125,16 @@ END
 DELIMITER ;
 drop procedure EncontrarAutorMaisAntigo;
 CALL EncontrarAutorMaisAntigo();
+
+-- 9
+
+DELIMITER //
+--Criação da stored procedure
+CREATE PROCEDURE listando_autoures()
+-- lista todos os autores no banco de dados
+BEGIN
+    SELECT nome, sobrenome FROM Autor;
+END
+//
+DELIMITER;
+CALL listando_autoures();
