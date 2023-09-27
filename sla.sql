@@ -110,3 +110,18 @@ DELIMITER ;
 
 CALL sp_AdicionarLivro(NULL, 'spfc campeão da cdb', 2, 2023, 22, 1);
 SELECT * FROM LIVRO;
+
+
+-- 8
+DELIMITER //
+
+CREATE PROCEDURE EncontrarAutorMaisAntigo()
+BEGIN
+    SELECT nome, Sobrenome
+    FROM Autor
+    WHERE data_nascimento = (SELECT MIN(data_nascimento) FROM Autor);
+END 
+//
+DELIMITER ;
+drop procedure EncontrarAutorMaisAntigo;
+CALL EncontrarAutorMaisAntigo();
